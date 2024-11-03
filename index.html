@@ -1,0 +1,556 @@
+<html>
+
+<head>
+    <title>
+        Admin Dashboard
+    </title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function showKaryawan() {
+            document.querySelector('.karyawan-container').style.display = 'block';
+            document.querySelector('.jabatan-container').style.display = 'none';
+            document.querySelector('.divisi-container').style.display = 'none';
+        }
+        function showJabatan() {
+            document.querySelector('.jabatan-container').style.display = 'block';
+            document.querySelector('.karyawan-container').style.display = 'none';
+            document.querySelector('.divisi-container').style.display = 'none';
+        }
+        function showDivisi() {
+            document.querySelector('.divisi-container').style.display = 'block';
+            document.querySelector('.karyawan-container').style.display = 'none';
+            document.querySelector('.jabatan-container').style.display = 'none';
+        }
+        function addKaryawan(event) {
+            event.preventDefault();
+            const kode = document.getElementById('kode').value;
+            const nama = document.getElementById('nama').value;
+            const email = document.getElementById('email').value;
+            const alamat = document.getElementById('alamat').value;
+            const jabatan = document.getElementById('jabatan').value;
+
+            const table = document.querySelector('.karyawan-container table tbody');
+            const row = document.createElement('tr');
+
+            row.innerHTML = `
+                <td>${table.rows.length + 1}</td>
+                <td>${kode}</td>
+                <td>${nama}</td>
+                <td>${email}</td>
+                <td>${alamat}</td>
+                <td>${jabatan}</td>
+                <td>
+                    <div class="action-buttons">
+                        <button class="edit">Edit</button>
+                        <button class="delete">Delete</button>
+                    </div>
+                </td>
+            `;
+
+            table.appendChild(row);
+
+            document.querySelector('.add-karyawan-form').reset();
+            document.querySelector('.add-karyawan-form').style.display = 'none';
+        }
+        function addJabatan(event) {
+            event.preventDefault();
+            const kodeJabatan = document.getElementById('kode-jabatan').value;
+            const jabatan = document.getElementById('jabatan-name').value;
+
+            const table = document.querySelector('.jabatan-container table tbody');
+            const row = document.createElement('tr');
+
+            row.innerHTML = `
+                <td>${table.rows.length + 1}</td>
+                <td>${kodeJabatan}</td>
+                <td>${jabatan}</td>
+                <td>
+                    <div class="action-buttons">
+                        <button class="edit">Edit</button>
+                        <button class="delete">Delete</button>
+                    </div>
+                </td>
+            `;
+
+            table.appendChild(row);
+
+            document.querySelector('.add-jabatan-form').reset();
+            document.querySelector('.add-jabatan-form').style.display = 'none';
+        }
+        function addDivisi(event) {
+            event.preventDefault();
+            const kodeDivisi = document.getElementById('kode-divisi').value;
+            const namaDivisi = document.getElementById('nama-divisi').value;
+
+            const table = document.querySelector('.divisi-container table tbody');
+            const row = document.createElement('tr');
+
+            row.innerHTML = `
+                <td>${table.rows.length + 1}</td>
+                <td>${kodeDivisi}</td>
+                <td>${namaDivisi}</td>
+                <td>
+                    <div class="action-buttons">
+                        <button class="edit">Edit</button>
+                        <button class="delete">Delete</button>
+                    </div>
+                </td>
+            `;
+
+            table.appendChild(row);
+
+            document.querySelector('.add-divisi-form').reset();
+            document.querySelector('.add-divisi-form').style.display = 'none';
+        }
+    </script>
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <img alt="User profile picture" height="50"
+                src="img/kelulusan.jpg"
+                width="50" />
+            <h3>
+                Welcome, Aldiansyah
+            </h3>
+            <p>
+                Administrator
+            </p>
+        </div>
+        <div class="sidebar-menu">
+            <a class="active" href="#">
+                <i class="fas fa-tachometer-alt">
+                </i>
+                Dashboard
+            </a>
+            <a href="#" onclick="showKaryawan()">
+                <i class="fas fa-users">
+                </i>
+                Karyawan
+            </a>
+            <a href="#" onclick="showJabatan()">
+                <i class="fas fa-briefcase">
+                </i>
+                Jabatan
+            </a>
+            <a href="#" onclick="showDivisi()">
+                <i class="fas fa-building">
+                </i>
+                Divisi
+            </a>
+            <a href="#">
+                <i class="fas fa-calendar-check">
+                </i>
+                Absensi
+            </a>
+            <a href="#">
+                <i class="fas fa-envelope-open">
+                </i>
+                Izin
+            </a>
+            <a href="#">
+                <i class="fas fa-clock">
+                </i>
+                Lembur
+            </a>
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="header">
+            <h1>
+                Sistem Informasi Manajemen Karyawan
+            </h1>
+            <div class="user-profile">
+                <img alt="User profile picture" height="40"
+                    src="img/kelulusan.jpg"
+                    width="40" />
+            </div>
+        </div>
+        <div class="dashboard-cards">
+            <div class="dashboard-card blue">
+                <i class="fas fa-user">
+                </i>
+                <h3>
+                    Data Pegawai
+                </h3>
+                <p>
+                    13
+                </p>
+            </div>
+            <div class="dashboard-card green">
+                <i class="fas fa-calendar-check">
+                </i>
+                <h3>
+                    Absensi Hari Ini
+                </h3>
+                <p>
+                    0
+                </p>
+                <p>
+                    3 November 2024
+                </p>
+            </div>
+            <div class="dashboard-card orange">
+                <i class="fas fa-envelope-open">
+                </i>
+                <h3>
+                    Izin Menunggu Konfirmasi
+                </h3>
+                <p>
+                    2
+                </p>
+            </div>
+            <div class="dashboard-card purple">
+                <i class="fas fa-clock">
+                </i>
+                <h3>
+                    Lembur Menunggu Konfirmasi
+                </h3>
+                <p>
+                    1
+                </p>
+            </div>
+        </div>
+        <div class="karyawan-container">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h2>
+                    Data Karyawan
+                </h2>
+                <button onclick="document.querySelector('.add-karyawan-form').style.display='block'">
+                    Tambah Karyawan
+                </button>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            No
+                        </th>
+                        <th>
+                            Kode
+                        </th>
+                        <th>
+                            Nama
+                        </th>
+                        <th>
+                            Email
+                        </th>
+                        <th>
+                            Alamat
+                        </th>
+                        <th>
+                            Jabatan
+                        </th>
+                        <th>
+                            Aksi
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            K001
+                        </td>
+                        <td>
+                            Aldiansyah
+                        </td>
+                        <td>
+                            aldi040524@gmail.com
+                        </td>
+                        <td>
+                            Jl. Merdeka No. 1
+                        </td>
+                        <td>
+                            Administrator
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="edit">
+                                    Edit
+                                </button>
+                                <button class="delete">
+                                    Delete
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            2
+                        </td>
+                        <td>
+                            K002
+                        </td>
+                        <td>
+                            Sigit
+                        </td>
+                        <td>
+                            sigit12@gmail.com
+                        </td>
+                        <td>
+                            Jl. Kebangsaan No. 2
+                        </td>
+                        <td>
+                            Manager
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="edit">
+                                    Edit
+                                </button>
+                                <button class="delete">
+                                    Delete
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            3
+                        </td>
+                        <td>
+                            K003
+                        </td>
+                        <td>
+                            Putra
+                        </td>
+                        <td>
+                            putra08@gmail.com
+                        </td>
+                        <td>
+                            Jl. Pahlawan No. 3
+                        </td>
+                        <td>
+                            Staff
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="edit">
+                                    Edit
+                                </button>
+                                <button class="delete">
+                                    Delete
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <form class="add-karyawan-form" onsubmit="addKaryawan(event)" style="display: none;">
+                <h3>
+                    Tambah Karyawan
+                </h3>
+                <input id="kode" placeholder="Kode" required="" type="text" />
+                <input id="nama" placeholder="Nama" required="" type="text" />
+                <input id="email" placeholder="Email" required="" type="email" />
+                <input id="alamat" placeholder="Alamat" required="" type="text" />
+                <input id="jabatan" placeholder="Jabatan" required="" type="text" />
+                <button type="submit">
+                    Tambah
+                </button>
+            </form>
+        </div>
+        <div class="jabatan-container">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h2>
+                    Data Jabatan
+                </h2>
+                <button onclick="document.querySelector('.add-jabatan-form').style.display='block'">
+                    Tambah Jabatan
+                </button>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            No
+                        </th>
+                        <th>
+                            Kode Jabatan
+                        </th>
+                        <th>
+                            Jabatan
+                        </th>
+                        <th>
+                            Aksi
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            J001
+                        </td>
+                        <td>
+                            Administrator
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="edit">
+                                    Edit
+                                </button>
+                                <button class="delete">
+                                    Delete
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            2
+                        </td>
+                        <td>
+                            J002
+                        </td>
+                        <td>
+                            Manager
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="edit">
+                                    Edit
+                                </button>
+                                <button class="delete">
+                                    Delete
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            3
+                        </td>
+                        <td>
+                            J003
+                        </td>
+                        <td>
+                            Staff
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="edit">
+                                    Edit
+                                </button>
+                                <button class="delete">
+                                    Delete
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <form class="add-jabatan-form" onsubmit="addJabatan(event)" style="display: none;">
+                <h3>
+                    Tambah Jabatan
+                </h3>
+                <input id="kode jabatan" placeholder="jabatan" required="" type="text" />
+                <input id="jabatan" placeholder="Jabatan" required="" type="text" />
+                <button type="submit">
+                    Tambah
+                </button>
+            </form>
+        </div>
+        <div class="divisi-container">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h2>
+                    Data Divisi
+                </h2>
+                <button onclick="document.querySelector('.add-divisi-form').style.display='block'">
+                    Tambah Divisi
+                </button>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            No
+                        </th>
+                        <th>
+                            Kode Divisi
+                        </th>
+                        <th>
+                            Nama Divisi
+                        </th>
+                        <th>
+                            Aksi
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Div001
+                        </td>
+                        <td>
+                            Umum
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="edit">
+                                    Edit
+                                </button>
+                                <button class="delete">
+                                    Delete
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            2
+                        </td>
+                        <td>
+                            Div002
+                        </td>
+                        <td>
+                            IT
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="edit">
+                                    Edit
+                                </button>
+                                <button class="delete">
+                                    Delete
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            3
+                        </td>
+                        <td>
+                            Div003
+                        </td>
+                        <td>
+                            OB
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="edit">
+                                    Edit
+                                </button>
+                                <button class="delete">
+                                    Delete
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
